@@ -8,3 +8,8 @@ p{
 .navbar-brand{
   margin: 0
 }
+
+input, button{
+  display: block;
+  margin: 0 50px
+}

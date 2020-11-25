@@ -4,6 +4,8 @@ import Home from "./Views/Home";
 import ContactUs from "./Views/ContactUs";
 import TestHistory from "./Views/TestHistory";
 import LogIn from "./Views/LogIn";
+import SignUp from "./Views/SignUp";
+import ForgotPass from "./Views/ForgotPass";
 
 class App extends Component {
 
@@ -14,6 +16,8 @@ class App extends Component {
         <Route path="/contact" render={()=><ContactUs/>}/>
         <Route path="/history" render={()=><TestHistory/>}/>
         <Route path="/login" render={()=><LogIn/>}/>
+        <Route path="/signup" render={()=><SignUp/>}/>
+        <Route path="/forgotpass" render={()=><ForgotPass/>}/>
       </BrowserRouter>
     );
   }

@@ -1,42 +1,39 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 
-class LogIn extends Component {
-
-  const [contact, setContact] = useState({
-    fName: "",
-    lName: "",
-    email: ""
-  });
-
-  function update(event) {
-    const { name, value } = event.target;
-
-    setContact((prevData) => {
-      if (name === "fName") {
-        return {
-          fName: value,
-          lName: prevData.lName,
-          email: prevData.email
-        };
-      } else if (name === "lName") {
-        return {
-          fName: prevData.fName,
-          lName: value,
-          email: prevData.email
-        };
-      } else {
-        return {
-          fName: prevData.fName,
-          lName: prevData.lName,
-          email: value
-        };
-      }
+function LogIn() {
+    const [contact, setContact] = useState({
+      email: "",
+      password: "",
+      stars:""
     });
-  }
 
-  render() {
+    function update(event) {
+      const { name, value } = event.target;
+      setContact((prevData) => {
+        if (name === "email") {
+          return {
+            email: value,
+            password: prevData.password,
+            stars: prevData.stars
+          };
+        } else {
+          let newStars = ""
+          if(value.length>prevData.password.length){
+            newStars = prevData.stars + "*";
+          } else {
+            newStars = (prevData.stars).slice(0,(prevData.stars).length-1);
+          }
+          return {
+            email: prevData.email,
+            password: value,
+            stars: newStars
+          };
+        }
+      });
+    }
+
     return (
-        <div className="container">
+        <div>
           <h1>Let's get you signed in!</h1>
 
           <form>
@@ -46,24 +43,21 @@ class LogIn extends Component {
               placeholder="Email"
               value={contact.email}
             />
-
             <input
               onChange={update}
-              name="lName"
-              placeholder="Last Name"
-              value={contact.lName}
+              name="password"
+              placeholder="Password"
+              value={contact.stars}
             />
-
-            <button>Submit</button>
-
-            <p><a>Forgot password</a></p>
+            <button>Log in</button>
           </form>
 
+          <p><a href="/forgotpass">Forgot password</a></p>
           <p>Don't have an account? <a href="/signup">Sign Up</a></p>
         </div>
 
     );
-  }
+
 }
 
 export default LogIn;
