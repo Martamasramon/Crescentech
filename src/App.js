@@ -3,7 +3,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./Views/Home";
 import ContactUs from "./Views/ContactUs";
 import TestHistory from "./Views/TestHistory";
-import SignIn from "./Views/SignIn";
+import LogIn from "./Views/LogIn";
 
 class App extends Component {
 
@@ -13,7 +13,7 @@ class App extends Component {
         <Route exact path="/" render={()=><Home/>}/>
         <Route path="/contact" render={()=><ContactUs/>}/>
         <Route path="/history" render={()=><TestHistory/>}/>
-        <Route path="/signin" render={()=><SignIn/>}/>
+        <Route path="/login" render={()=><LogIn/>}/>
       </BrowserRouter>
     );
   }
