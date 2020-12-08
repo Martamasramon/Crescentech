@@ -1,11 +1,13 @@
 import React, {Component} from "react";
 import {BrowserRouter, Route} from "react-router-dom";
+
 import Home from "./Views/Home";
 import ContactUs from "./Views/ContactUs";
 import TestHistory from "./Views/TestHistory";
 import LogIn from "./Views/LogIn";
 import SignUp from "./Views/SignUp";
 import ForgotPass from "./Views/ForgotPass";
+
 
 class App extends Component {
 
