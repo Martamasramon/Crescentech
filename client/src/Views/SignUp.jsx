@@ -3,121 +3,65 @@ import React, {useState} from "react";
 function SignUp(){
 
   const [contact, setContact] = useState({
-    fName: "",
-    lName: "",
+    name: "",
     email: "",
     password: "",
-    stars:"",
-    passwordRepeated: "",
-    starsRepeated:""
+    password2: ""
   });
 
-  function update(event) {
-    const { name, value } = event.target;
+  const { name, email, password, password2 } = contact;
 
-    setContact((prevData) => {
-      if (name === "fName") {
-        return {
-          fName: value,
-          lName: prevData.lName,
-          email: prevData.email,
-          password: prevData.password,
-          stars: prevData.stars,
-          passwordRepeated: prevData.passwordRepeated,
-          starsRepeated: prevData.starsRepeated
-        };
-      } else if (name === "lName") {
-        return {
-          fName: prevData.fName,
-          lName: value,
-          email: prevData.email,
-          password: prevData.password,
-          stars: prevData.stars,
-          passwordRepeated: prevData.passwordRepeated,
-          starsRepeated: prevData.starsRepeated
-        };
-      } else if (name === "email"){
-        return {
-          fName: prevData.fName,
-          lName: prevData.lName,
-          email: value,
-          password: prevData.password,
-          stars: prevData.stars,
-          passwordRepeated: prevData.passwordRepeated,
-          starsRepeated: prevData.starsRepeated
-        };
-      } else if (name === "password"){
-        let newStars = ""
-        if(value.length>prevData.password.length){
-          newStars = prevData.stars + "*";
-        } else {
-          newStars = (prevData.stars).slice(0,(prevData.stars).length-1);
-        }
-        return {
-          fName: prevData.fName,
-          lName: prevData.lName,
-          email: prevData.email,
-          password: value,
-          stars: newStars,
-          passwordRepeated: prevData.passwordRepeated,
-          starsRepeated: prevData.starsRepeated
-        };
-      } else {
-        let newStars = ""
-        if(value.length>prevData.passwordRepeated.length){
-          newStars = prevData.starsRepeated + "*";
-        } else {
-          newStars = (prevData.starsRepeated).slice(0,(prevData.starsRepeated).length-1);
-        }
-        return {
-          fName: prevData.fName,
-          lName: prevData.lName,
-          email: prevData.email,
-          password: prevData.password,
-          stars: prevData.stars,
-          passwordRepeated: value,
-          starsRepeated: newStars
-        };
-      }
-    });
-  }
+  const update = (e) => setContact({
+    ...contact,[e.target.name]:e.target.value
+  });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if(password !== password2){
+      console.log("Passwords do not match");
+    } else{
+      console.log("Success!")
+    }
+  };
 
   return (
       <div>
         <h1>Fill in with your details to make an account</h1>
 
-        <form>
+        <form onSubmit={onSubmit}>
           <input
             onChange={update}
-            name="fName"
-            placeholder="First Name"
-            value={contact.fName}
-          />
-          <input
-            onChange={update}
-            name="lName"
-            placeholder="Last Name"
-            value={contact.lName}
+            name="name"
+            placeholder="Full name"
+            value={name}
+            required
           />
           <input
             onChange={update}
             name="email"
             placeholder="Email"
-            value={contact.email}
+            value={email}
+            required
           />
           <input
+            type="password"
             onChange={update}
             name="password"
             placeholder="Password"
-            value={contact.stars}
+            value={password}
+            minLength='6'
+            required
           />
           <input
+          type="password"
             onChange={update}
-            name="passwordRepeated"
-            placeholder="Repeat the password"
-            value={contact.starsRepeated}
+            name="password2"
+            placeholder="Confirm password"
+            value={password2}
+            minLength='6'
+            required
           />
-          <button>Sign up</button>
+          <input type="submit" value="Sign up" />
         </form>
 
         <p>Already have an account? <a href="/login">Log in</a></p>
