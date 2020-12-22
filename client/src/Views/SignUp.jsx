@@ -1,6 +1,9 @@
 import React, {useState} from "react";
+import { connect } from 'react-redux';
+import { setAlert } from '../actions/alert';
+import PropTypes from 'prop-types';
 
-function SignUp(){
+const SignUp = ({setAlert}) => {
 
   const [contact, setContact] = useState({
     name: "",
@@ -18,7 +21,7 @@ function SignUp(){
   const onSubmit = async (e) => {
     e.preventDefault();
     if(password !== password2){
-      console.log("Passwords do not match");
+      setAlert("Passwords do not match", "danger");
     } else{
       console.log("Success!")
     }
@@ -26,6 +29,7 @@ function SignUp(){
 
   return (
       <div>
+
         <h1>Fill in with your details to make an account</h1>
 
         <form onSubmit={onSubmit}>
@@ -71,4 +75,9 @@ function SignUp(){
 
 }
 
-export default SignUp;
+SignUp.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+};
+
+
+export default connect(null, {setAlert})(SignUp);

@@ -3,6 +3,7 @@ const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const auth = require('../../middleware/auth');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
 const normalize = require('normalize-url');
@@ -10,8 +11,8 @@ const normalize = require('normalize-url');
 const User = require('../../models/User');
 
 
-// @route GET api/users
-// @desc Test route
+// @route POST api/user
+// @desc Register user
 // @access Public
 router.post(
   '/',
@@ -83,6 +84,41 @@ router.post(
       console.error(err.message);
       res.status(500).send('Server error');
     }
+});
+
+// @route    GET api/user
+// @desc     Get current user
+// @access   Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.user.id });
+
+    if (!user) {
+      return res.status(400).json({ msg: 'User not found' });
+    }
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    DELETE api/user
+// @desc     Delete user & history
+// @access   Private
+router.delete('/', auth, async (req, res) => {
+  try {
+    // Remove user history
+    await History.deleteMany({ user: req.user.id });
+    // Remove user
+    await User.findOneAndRemove({ _id: req.user.id });
+
+    res.json({ msg: 'User deleted' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 module.exports = router;
