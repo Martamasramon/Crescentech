@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const Alert = ({ alerts }) =>
-  alerts !== null &&
-  alerts.lentgh > 0 &&
   alerts.map((alert) => (
     // This is the link to the different CSS classes
     <div key={alert.id} className={`alert alert-${alert.alertType}`}>
