@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import { connect } from 'react-redux';
 import { setAlert } from '../actions/alert';
+import { register } from '../actions/auth';
 import PropTypes from 'prop-types';
 
-const SignUp = ({setAlert}) => {
+const SignUp = ({setAlert, register}) => {
 
   const [contact, setContact] = useState({
     name: "",
@@ -23,7 +24,7 @@ const SignUp = ({setAlert}) => {
     if(password !== password2){
       setAlert("Passwords do not match", "danger");
     } else{
-      console.log("Success!")
+      register({ name, email, password });
     }
   };
 
@@ -77,7 +78,8 @@ const SignUp = ({setAlert}) => {
 
 SignUp.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
 };
 
 
-export default connect(null, {setAlert})(SignUp);
+export default connect(null, {setAlert, register})(SignUp);
