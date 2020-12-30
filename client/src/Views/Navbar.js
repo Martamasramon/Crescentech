@@ -1,13 +1,16 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { logout } from '../actions/auth';
+import PropTypes from 'prop-types';
 
-const Navbar = () => {
+const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   // Add class to change login to logout
   const authLinks = (
     <ul className="nav navbar-nav navbar-right">
       <li id="home"><a href="/">HOME</a></li>
       <li id="contact"><a href="/contact">CONTACT US</a></li>
-      <li id="history"><a href="/history">HISTORY</a></li>
-      <li id="login"><a href="/login">LOG OUT</a></li>
+      <li id="history"><a href="/history">RESULT HISTORY</a></li>
+      <li id="logout"><a onClick={logout} href="/">LOG OUT</a></li>
     </ul>
   );
 
@@ -23,12 +26,21 @@ const Navbar = () => {
     <nav className="navbar navbar-default">
       <div className="container">
         <div className="navbar-header">
-          <p className="navbar-brand">Fusarium Detection</p>
+          <p className="navbar-brand">Crescentech</p>
         </div>
-        <Fragment>{0 ? authLinks : guestLinks}</Fragment>
+        {!loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>)}
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);
