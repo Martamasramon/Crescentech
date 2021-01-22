@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 import Home from "./Views/Home";
 import ContactUs from "./Views/ContactUs";
-import TestHistory from "./Views/TestHistory";
+import Tests from "./Views/Tests";
 import LogIn from "./Views/LogIn";
 import SignUp from "./Views/SignUp";
 import ForgotPass from "./Views/ForgotPass";
@@ -36,7 +36,7 @@ const App = () => {
             <Alert/>
             <Switch>
               <Route exact path="/contact" component={ContactUs} />
-              <Route exact path="/history" component={TestHistory} />
+              <Route exact path="/tests" component={Tests} />
               <Route exact path="/login" component={LogIn} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/forgotpass" component={ForgotPass} />

@@ -9,7 +9,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <ul className="nav navbar-nav navbar-right">
       <li id="home"><a href="/">HOME</a></li>
       <li id="contact"><a href="/contact">CONTACT US</a></li>
-      <li id="history"><a href="/history">RESULT HISTORY</a></li>
+      <li id="tests"><a href="/tests">RESULT HISTORY</a></li>
       <li id="logout"><a onClick={logout} href="/">LOG OUT</a></li>
     </ul>
   );
