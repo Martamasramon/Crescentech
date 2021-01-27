@@ -4,7 +4,7 @@ import TestItem from './TestItem';
 import { connect } from 'react-redux';
 import { getTests } from '../actions/test';
 
-const Tests = ({ getTests, test:{tests, loading} }) => {
+const Tests = ({ getTests, test:{tests, loading}, match }) => {
   useEffect(() => {
     getTests();
   }, [getTests]);
@@ -16,6 +16,8 @@ const Tests = ({ getTests, test:{tests, loading} }) => {
       <h1>Test Result History</h1>
 
       <div className="tests">
+        {tests.map((test) => (
+        <TestItem key={test._id} test={test} />))}
       </div>
     </Fragment>
   );

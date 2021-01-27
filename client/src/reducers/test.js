@@ -16,15 +16,10 @@ export default function fn(state = initialState, action) {
 
   switch (type) {
     case GET_TESTS:
-      return {
-        ...state,
-        tests: payload,
-        loading: false
-      };
     case GET_TEST:
       return {
         ...state,
-        test: payload,
+        tests: payload,
         loading: false
       };
     case TEST_ERROR:

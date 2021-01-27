@@ -13,7 +13,7 @@ const TestItem = ({
     <h4>{name}</h4>
     <p>{text}</p>
     <p>Tested on {date}</p>
-    {comments.length > 0 && (<p>{comments.length} comments</p>)}
+    {comments.length > 0 && (<p>{comments}</p>)}
   </div>
 );
 
