@@ -1,6 +1,6 @@
 import {
   GET_TESTS,
-  GET_TEST,
+  DELETE_TEST,
   TEST_ERROR
 } from '../actions/types';
 
@@ -16,10 +16,15 @@ export default function fn(state = initialState, action) {
 
   switch (type) {
     case GET_TESTS:
-    case GET_TEST:
       return {
         ...state,
         tests: payload,
+        loading: false
+      };
+    case DELETE_TEST:
+      return {
+        ...state,
+        posts: state.tests.filter(test => test._id !== payload),
         loading: false
       };
     case TEST_ERROR:

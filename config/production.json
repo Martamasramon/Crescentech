@@ -1,0 +1,4 @@
+{
+  "mongoURI":"mongodb+srv://developer:developer@cluster0.6kp85.mongodb.net/usersDB?retryWrites=true&w=majority",
+  "jwtSecret": "mypersonaltokenwink"
+}

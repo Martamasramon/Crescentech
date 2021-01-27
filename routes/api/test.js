@@ -45,8 +45,8 @@ router.post(
     }
 });
 
-// @route    GET api/tests
-// @desc     Get all tests
+// @route    GET api/test
+// @desc     Get all test
 // @access   Private
 router.get('/', auth, async (req, res) => {
   try {
