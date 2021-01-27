@@ -19,7 +19,7 @@ const TestSchema = new mongoose.Schema({
   },
   result: {
     type: String,
-    required: true
+    default: "Inconclusive"
   },
   comments: {
     type: String

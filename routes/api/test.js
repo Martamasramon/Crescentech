@@ -19,32 +19,26 @@ router.post(
   [auth, [check('result', 'Result is required').not().isEmpty()]],
   async (req, res) => {
 
-    res.status(400).json('potato0');
-
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    res.status(400).json('potato1');
+    const { title, location, date, result, comments } = req.body;
+
     try {
-      //const { title, location, date, result, comments } = req.body;
 
       let newTest = new Test({
         user: req.user.id,
-        title: req.body.title,
-        location: req.body.location,
-        date: req.body.date,
-        result: req.body.result,
-        comments: req.body.comments
+        title,
+        location,
+        date,
+        result,
+        comments
       });
 
-
-      //const test = await newTest.save();
-      //res.json(test);
-
-      await newTest.save();
-      res.status(400).json('potato2');
+      const test = await newTest.save();
+      res.json(test);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
