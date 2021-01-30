@@ -6,6 +6,7 @@ import { deleteTest } from '../actions/test';
 // Make returned html pretty!
 const TestItem = ({
   auth,
+  deleteTest,
   test: { _id, title, result, user, comments, date, location },
 }) => (
   <div>
@@ -13,7 +14,7 @@ const TestItem = ({
     <p>{result}</p>
     <p>Tested on {date}, at {location}</p>
     <p>{comments}</p>
-    <a onClick={() => deleteTest(_id)} href="/tests">Delete</a>
+    <button onClick={() => deleteTest(_id)}>Delete</button>
   </div>
 );
 
