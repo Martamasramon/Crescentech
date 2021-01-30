@@ -10,12 +10,12 @@ const Tests = ({ getTests, test:{tests, loading} }) => {
   }, [getTests]);
 
   // Change h1 to spinner
-  //{tests.map((test) => (  <TestItem key={test._id} test={test} /> ))}
   return loading ? (<h1>Loading</h1>) : (
     <Fragment>
       <h1>Test Result History</h1>
 
       <div className="tests">
+      {tests.map((test) => (  <TestItem key={test._id} test={test} /> ))}
       </div>
     </Fragment>
   );

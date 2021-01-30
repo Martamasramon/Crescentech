@@ -11,10 +11,8 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 
 export const GET_TESTS = 'GET_TESTS';
-export const GET_TEST = 'GET_TEST';
 export const TEST_ERROR = 'TEST_ERROR';
 export const DELETE_TEST = 'DELETE_TEST';
-export const ADD_TEST = 'ADD_TEST';
 
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';

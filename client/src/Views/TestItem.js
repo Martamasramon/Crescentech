@@ -1,19 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'react-moment';
 import { connect } from 'react-redux';
-//import { deleteTest } from '../actions/test';
+import { deleteTest } from '../actions/test';
 
 // Make returned html pretty!
 const TestItem = ({
   auth,
-  test: { _id, text, name, user, comments, date },
+  test: { _id, title, result, user, comments, date, location },
 }) => (
   <div>
-    <h4>{name}</h4>
-    <p>{text}</p>
-    <p>Tested on {date}</p>
-    {comments.length > 0 && (<p>{comments.length} comments</p>)}
+    <h2>{title}</h2>
+    <p>{result}</p>
+    <p>Tested on {date}, at {location}</p>
+    <p>{comments}</p>
+    <a onClick={() => deleteTest(_id)} href="/tests">Delete</a>
   </div>
 );
 
@@ -24,10 +24,11 @@ TestItem.defaultProps = {
 TestItem.propTypes = {
   test: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  deleteTest: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, {})(TestItem);
+export default connect(mapStateToProps, {deleteTest})(TestItem);

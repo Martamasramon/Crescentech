@@ -9,7 +9,7 @@ p{
   margin: 0
 }
 
-input, button{
+input, button, a{
   display: block;
   margin: 0 50px
 }

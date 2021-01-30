@@ -60,5 +60,5 @@
     "concurrently": "^5.3.0",
     "nodemon": "^2.0.6"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "https://evening-eyrie-40887.herokuapp.com/"
 }
