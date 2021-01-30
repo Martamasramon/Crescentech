@@ -28,13 +28,14 @@ export const getTests = () => async dispatch => {
 export const deleteTest = id => async dispatch => {
   try {
     await axios.delete(`/api/test/${id}`);
+    await window.location.reload(false);
 
     dispatch({
       type: DELETE_TEST,
       payload: id
     });
 
-    dispatch(setAlert('Test Removed', 'success'));
+    //dispatch(setAlert('Test Removed', 'success'));
   } catch (err) {
     dispatch({
       type: TEST_ERROR,
