@@ -7,6 +7,12 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
 
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://crescentech.herokuapp.com");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // @route GET api/auth
 // @desc Test route
 // @access Public
