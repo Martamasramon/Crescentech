@@ -16,6 +16,7 @@ router.use(function(req, res, next) {
   next();
 });
 
+
 // @route POST api/user
 // @desc Register user
 // @access Public
